@@ -8,14 +8,14 @@
 
 using namespace std;
 
-// Function to generate a random integer array of given size
+
 void generateRandomArray(int arr[], int size) {
     for (int i = 0; i < size; ++i) {
-        arr[i] = rand() % 1000; // Adjust the range as needed
+        arr[i] = rand() % 1000; 
     }
 }
 
-// Function to find the sum of elements in the array
+
 int sequentialSum(const int arr[], int size) {
     int sum = 0;
     for (int i = 0; i < size; ++i) {
@@ -24,7 +24,6 @@ int sequentialSum(const int arr[], int size) {
     return sum;
 }
 
-// Function to search for a key element in the array
 bool sequentialSearch(const int arr[], int size, int key) {
     for (int i = 0; i < size; ++i) {
         if (arr[i] == key) {
@@ -34,7 +33,6 @@ bool sequentialSearch(const int arr[], int size, int key) {
     return false;
 }
 
-// Function for parallel computation using threads
 void parallelComputation(const int arr[], int size, int& sum, int key, bool& found, int start, int end) {
     for (int i = start; i < end; ++i) {
         sum += arr[i];
@@ -53,15 +51,14 @@ int main() {
         int* arr = new int[size];
         generateRandomArray(arr, size);
 
-        // Evaluate sequential performance
+
         auto startSeq = chrono::high_resolution_clock::now();
         int seqSum = sequentialSum(arr, size);
-        bool seqSearch = sequentialSearch(arr, size, rand() % 1000); // Search for a random key
+        bool seqSearch = sequentialSearch(arr, size, rand() % 1000); 
         auto endSeq = chrono::high_resolution_clock::now();
         chrono::duration<double> seqDuration = endSeq - startSeq;
 
-        // Evaluate parallel performance
-        int numThreads = thread::hardware_concurrency();
+        int numThreads = 1;
         int chunkSize = size / numThreads;
 
         auto startPar = chrono::high_resolution_clock::now();
